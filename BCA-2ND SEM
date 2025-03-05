@@ -1,3 +1,4 @@
+1. Program which reads two numbers having same number of digits. The program outputs the sum of product of corresponding digits.
 import java.io.*;
 class ProductSum
 {
@@ -20,3 +21,657 @@ class ProductSum
         System.out.println("Sum and product of corresponding digits ="+sp);
     }
 } 
+
+2. Define a class named Pay with data members String name, double salary, double da, double hra, double pf, double grossSal, double netSal and methods: Pay(String n, double s) - Parameterized constructor to initialize the data members, void calculate() - to calculate the following salary components, and void display() - to display the employee name, salary and all salary components. 
+import java.io.*;
+class pay
+{
+    String name;
+    double salary;
+    double DA;
+    double HRA;
+    double PF;
+    double grossSal;
+    double netSal;
+    pay(String n,double s)
+    {
+        name=n;
+        salary=s;
+        DA=0;
+        HRA=0;
+        PF=0;
+        grossSal=0;
+        netSal=0;
+    }
+    void calculate()
+    {
+        DA=salary*15.0/100;
+        HRA=salary*10.0/100;
+        PF=salary*12.0/100;
+        grossSal=salary+DA+HRA;
+        netSal=grossSal-PF;
+    }
+    void display()
+    {
+        System.out.println("Employee name :"+name);
+        System.out.println("Salary :"+salary);
+        System.out.println("Dearness Allowance :"+DA);
+        System.out.println("House Rent Allowancr :"+HRA);
+        System.out.println("Provident Fund :"+PF);
+        System.out.println("Gross Salary :"+grossSal);
+        System.out.println("Net Salary :"+netSal);
+    }
+}
+class PaySal
+{
+    public static void main(String[] args)throws IOException
+    {
+        BufferedReader br = new BufferedReader(newInputStreamReader(System.in));
+        System.out.println("Enter employee name :");
+        String empName=br.readLine();
+        System.out.println("Enter Salary :");
+        double empSal= Double.parseDouble(br.readLine());
+        pay obj=new pay(empName,empSal);
+        obj.calculate();
+        obj.display();
+    }
+}
+
+3. Program to create a class DISTANCE with the data members feet and inches. Use a constructor to read the data and a member function Sum ( ) to add two distances by using objects as method arguments and show the result. (Input and output of inches should be less than 12.)
+import java.util.Scanner;
+class distance
+{
+    int feet;
+    int inches;
+    distance()
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter feet:");
+        feet=sc.nextInt();
+        System.out.println("Enter inches:");
+        inches=sc.nextInt();
+    }
+    public void showDistance()
+    {
+        System.out.println("Feet:"+feet+"\tInches:"+inches);
+    }
+    void sum(distance D1,distance D2)
+    {
+        inches=D1.inches+D2.inches;
+        feet=D1.feet+D2.feet+(inches/12);
+        inches=inches%12;
+    }
+}
+
+public class labA5
+{
+    public static void main(String[] s)
+    {
+        distance D1=new distance();
+        distance D2=new distance();
+        System.out.println("second distance:");
+        D1.showDistance();
+        System.out.println("second distance:");
+        D2.showDistance();
+        D1.sum(D1,D2);
+        System.out.println("Total distance is:");
+        D1.showDistance();
+    }
+}
+
+4. Program to create a class “Matrix” that would contain integer values having varied numbers of columns for each row. Print row-wise sum.
+import java.io.*;
+import java.util.Scanner;
+public class Matrix
+{
+    public static void main(String [] args)
+    {
+        int sumrow,sumcol;
+        Scanner scan=new Scanner(System.in);
+        System.out.println("Enter the size of rows ");
+        int m=scan.nextInt();
+        System.out.println("Enter the size of colunms ");
+        int n=scan.nextInt();
+        int a[][];
+        a=new int[m][n];
+        System.out.println("Enter the elements : ");
+        for(int i=0; i<m; i++)
+        {
+            for(int j=0; j<n; j++)
+            {
+                a[i][j]=scan.nextInt();
+            }
+        }
+        m=a[0].length;
+        n=a[0].length;
+        for(int i=0; i<m; i++)
+        {
+            sumrow=0;
+            for(int j=0; j<n; j++)
+             {
+                sumrow=sumrow+a[i][j];
+            }
+            System.out.println("Sum of"+(i+1)+"row:"+sumrow);
+        }
+    }
+}
+
+5. Program to extract portion of character string and print extracted string. Assume that ‘n’ characters extracted starting from mth character position.
+import java.io.*;
+class ExtractStr
+{
+    public static void main(String []args)throws IOException
+    {
+        String str, substr;
+        int extract, start, len, check;
+        BufferedReader br=new BufferedReader(newInputStreamReader(System.in));
+        System.out.println("Enter String : ");
+        str=br.readLine();
+        len=str.length();
+        System.out.println("Enter Starting position to extract characters : ");
+        start=Integer.parseInt(br.readLine());
+        if(start<1||start>len)
+        {
+            System.out.println("INVALID POSITION");
+            System.exit(0);
+        }
+        System.out.println("Enter how many characters you want to extract \n");
+        extract=Integer.parseInt(br.readLine());
+        check=extract+start;
+        if(check<1||check>len)
+        {
+            System.out.println("Trying to extact invalid position: ");
+            System.exit(0);
+        }
+        substr=str.substring(start,check);
+        System.out.println("Extracted string : \n"+substr);
+    }
+}
+
+6. Program to add, remove and display elements of a Vector.
+import java.util.*;
+public class labA8
+{
+    public static void main(String args[])
+    {
+        Vector list = new Vector();
+        list.add("cat");
+        list.add("dog");
+        list.add("300");
+        list.add("cow");
+        list.add("600.78");
+        System.out.println("List of elements :"+list);
+        System.out.println("Removed element :"+list.remove(4));
+        System.out.println("Updated list of elements :"+list);
+    }
+}
+
+1. Program to implement the following class hierarchy: Student: id, name StudentExam (derived from Student): Marks of 3subjects, total marks StudentResult (derived from StudentExam) : percentage, grade. Define appropriate methods to accept and calculate grade based on existing criteria and display details of N students.
+import java .util.Scanner;
+class Student
+{
+    int c;
+    int std_id[]=new int[10];
+    String name[]=new String[10];
+
+    void getdata1()
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter total number of Students :");
+        c=sc.nextInt();
+        System.out.println("Enter id and name of the Student :");
+        for(int i=1; i<=c; i++)
+        {
+            System.out.println("Student"+i+"ID:");
+            std_id[i]=sc.nextInt();
+            System.out.println("Student"+i+"Name :");
+            name[i]=sc.next();
+        }
+    }
+}
+class StudentExam extends Student
+{
+    int m1[]=new int[10];
+    int m2[]=new int[10];
+    int m3[]=new int[10];
+    int total[]=new int[10];
+
+    void getdata2()
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter matrks of the students :");
+        for(int i=1; i<=c; i++)
+        {
+            System.out.println("Student"+i);
+            m1[i]=sc.nextInt();
+            m2[i]=sc.nextInt();
+            m3[i]=sc.nextInt();
+            total[i]=m1[i]+m2[i]+m3[i];
+        }
+    }
+}
+class StudentResult extends StudentExam
+{
+    float per[]=new float[10];
+    char grade[]=new char[10];
+
+    void call()
+    {
+        for(int i=1; i<=c; i++)
+        {
+            per[i]=total[i]/3;
+            if(per[i]>=90)
+                grade[i]='A';
+            else if(per[i]>=75)
+                grade[i]='B';
+            else if(per[i]>=60)
+                grade[i]='C';
+            else if(per[i]>=45)
+                grade[i]='D';
+            else
+                grade[i]='E';
+        }
+    }
+
+    void display()
+    {
+        System.out.println("Student Information :");
+        System.out.println("ID\tName\tMark1\tMark2\tMark3\tTotal\tPercentage\tGrade" );
+        for(int i=1; i<=c; i++)
+            System.out.println(std_id[i]+"\t"+name[i]+"\t"+m1[i]+"\t"+m2[i]+"\t"+m3[i]+"\t"+total[i]+"\t"+per[i]+"\t\t\t"+grade[i]);
+    }
+}
+
+class labB2
+{
+    public static void main(String[] args)
+    {
+        StudentResult sr=new StudentResult();
+        sr.getdata1();
+        sr.getdata2();
+        sr.call();
+        sr.display();
+    }
+}
+
+2. Write aProgram to calculate marks of a student using multiple inheritance implemented through interface. Class Student with data members rollNo, name, Stringcls and methods to set and put data. Create another class test extended by class Student with data members mark1, mark2, mark3 and methods to set and put data. Create interface sports with members sportsWt = 5 and putWt(). Now let the class results extends class test and implements interface sports. Write a Java program to read required data and display details in a neat format.
+import java.util.Scanner;
+class student
+{
+    int rollNo;
+    String name;
+    String cls;
+    void getData(int n,String nm,String c)
+    {
+        rollNo=n;
+        name=nm;
+        cls=c;
+    }
+    void putData()
+    {
+        System.out.println("Roll No :"+rollNo);
+        System.out.println("Name :"+name);
+        System.out.println("Class :"+cls);
+    }
+}
+class test extends student
+{
+    int mark1,mark2,mark3;
+    void getMarks(int m1,int m2,int m3)
+    {
+        mark1=m1;
+        mark2=m2;
+        mark3=m3;
+    }
+    void putMarks()
+    {
+        System.out.println("Marks Obtained :");
+        System.out.println("Subject 1="+mark1);
+        System.out.println("subject 2="+mark2);
+        System.out.println("subject 3="+mark3);
+    }
+}
+interface sports
+{
+    int sportsWt=5;
+
+    void putWt();
+}
+class results extends test implements sports
+{
+    int total;
+    public void putWt()
+    {
+        System.out.println("Sports Weight="+sportsWt);
+    }
+    void display()
+    {
+        total=mark1+mark2+mark3+sportsWt;
+        putData();
+        putMarks();
+        putWt();
+        System.out.println("Total Score ="+total);
+    }
+}
+class labB2 {
+    public static void main(String[] args) {
+        results r1=new results();
+        r1.getData(101,"Kumar","BCA");
+        r1.getMarks(60,60,78);
+        r1.display();
+    }
+}
+
+3. Create a package to convert temperature in centigrade into Fahrenheit, and one more package to calculate the simple Interest. Implement both package in the Main () by accepting the required inputs for each application.
+/* Program to Convert Centigrade to Fahrenheit.*/
+package pack1;
+public class temp
+{
+    float c,f;
+    public void getval(float a)
+    {
+        c=a;
+        System.out.println("Temp in celsius"+c+"degree");
+    }
+    public void ctof()
+    {
+        f=(float)(c*1.8f)+32;
+        System.out.println("Temp in Farenheit"+f);
+    }
+}
+
+
+/*Program to calculate simple interest*/
+package pack2;
+public class simple
+{
+    float p,t,r,si;
+    public void getdata(float a,float b,float c)
+    {
+        p=a;
+        t=b;
+        r=c;
+    }
+    public void cal()
+    {
+        si=p*t*(r/100);
+        System.out.println("Simple Interest is="+si);
+    }
+}
+import pack1.temp;
+import pack2.simple;
+import java.util.Scanner;
+class labB5
+{
+    public static void main(String[] args)
+    {
+        temp c1=new temp();
+        simple s1=new simple();
+        Scanner in=new Scanner(System.in);
+        int a;
+        float b,c,x;
+        System.out.println("Enter the Temparature in Centigrades :");
+        x=in.nextFloat();
+        c1.getval(x);
+        c1.ctof();
+        System.out.println("Enter the value to calculate Simple Interest");
+        System.out.println("Enter the Amount :");
+        a=in.nextInt();
+        System.out.println("Enter the Duration :");
+        b=in.nextFloat();
+        System.out.println("Enter the Rate :");
+        c=in.nextFloat();
+        s1.getdata(a,b,c);
+        s1.cal();
+    }
+}
+
+4. Write a Program that implements a multi-threaded program has three threads. First thread generates a random integer every second, and if the value is even, second thread computes the square of the number and prints. If the value is odd the third thread will print the value of cube of the number.[Multithreading]
+import java.io.*;
+import java.util.*;
+class First extends Thread
+{
+    public void run()
+    {
+        for(;;)
+        {
+            int r;
+            Random d = new Random();
+            r = d.nextInt(200)+1;
+            try
+            {
+                Thread.sleep(1000);
+                if(r%2==0)
+                {
+                    Thread t2 = new Second(r);
+                    t2.start();
+                }
+                else
+                {
+                    Thread t3 = new Third(r);
+                    t3.start();
+                }
+            }
+            catch(InterruptedException e)
+            {}
+        }
+    }
+}
+class Second extends Thread
+{
+    int r1;
+    Second(int r)
+    {
+        r1 = r;
+    }
+    public void run()
+    {
+        System.out.println("The square of number"+r1+"is :"+r1*r1);
+    }
+}
+class Third extends Thread
+{
+    int r1;
+    Third(int r)
+    {
+        r1 = r;
+    }
+    public void run()
+    {
+        System.out.println("The cube of the Number"+r1+"is :"+r1*r1*r1);
+    }
+}
+class labB6
+{
+    public static void main(String[] args)
+    {
+        Thread t1 = new First();
+        System.out.println("press Ctrl+c to stop.....");
+        t1.start();
+    }
+}
+
+5. Program that creates a user interface to perform basic integer operations. The user enters two numbers in the TextFields - Num1 and Num2. The result of operations must be displayed in the Result TextField when the “=” button is clicked. Appropriate Exception handling message to be displayed in the Result TextFieldwhen Num1 or Num2 is not an integer or Num2 is Zero when division operation is applied.
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+class Arith extends JFrame implements ActionListener
+{
+    JTextField v1,op,v2,res;
+    JButton b;
+    JLabel l1,l2,l3,l4;
+    Arith()
+    {
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+        l1 = new JLabel("Number1");
+        l2 = new JLabel("Operator");
+        l3 = new JLabel("Number2");
+        l4 = new JLabel("Result");
+        v1 = new JTextField("",5);
+        op = new JTextField("",1);
+        v2 = new JTextField("",5);
+        res = new JTextField("",5);
+        b = new JButton("=");
+        c.add(l1);
+        c.add(v1);
+        c.add(l2);
+        c.add(op);
+        c.add(l3);
+        c.add(v2);
+        c.add(b);
+        c.add(l4);
+        c.add(res);
+        b.addActionListener(this);
+    }
+    public void actionPerformed(ActionEvent ae)
+    {
+        if(ae.getActionCommand()=="=")
+        {
+            try
+            {
+                char operator = op.getText().charAt(0);
+                int r=0, n1=0, n2=0;
+                n1 = Integer.parseInt(v1.getText());
+                n2 = Integer.parseInt(v2.getText());
+                switch(operator)
+                {
+                case '+' :
+                    r = n1 + n2;
+                    break;
+                case '-' :
+                    r = n1 - n2;
+                    break;
+                case '*' :
+                    r = n1 *n2;
+                    break;
+                case '/' :
+                    r = n1 / n2;
+                    break;
+                }
+                res.setText(""+r);
+            }
+            catch(ArithmeticException e1)
+            {
+                res.setText("");
+                JOptionPane.showMessageDialog(null,"Arithmatic Exception");
+            }
+            catch(NumberFormatException e2)
+            {
+                res.setText("");
+                JOptionPane.showMessageDialog(null,"NumberFormatException");
+            }
+        }
+    }
+    public static void main(String[] args)
+    {
+        Arith ob = new Arith();
+        ob.setSize(600,400);
+        ob.setVisible(true);
+        ob.setVisible(true);
+        ob.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+}
+
+
+6. Using the swing components, design the frame for shopping a book that accepts book code, book name, and Price. Calculate the discount on code as follows. Code Discount rate 101 15% 102 20% 103 25% Any other 5%. Find the discount amount and Net bill amount. Display the bill.
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
+class Shopping extends JFrame implements ActionListener
+{
+JLabel l1,l2,l3,l4,l5;
+JButton b1,b2;
+JTextField t1,t2,t3,t4,t5;
+Shopping()
+{
+l1=new JLabel("Book Code");
+t1=new JTextField(5);
+l2=new JLabel("Book Title");
+t2=new JTextField (12);
+l3=new JLabel ("Book Price");
+t3=new JTextField(5);
+b1=new JButton("Process Bill");
+l4=new JLabel ("Discount");
+t4=new JTextField (10);
+l5=new JLabel ("Net Amount");
+t5=new JTextField (10);
+b2=new JButton("Clear");
+setLayout(new FlowLayout());
+add(l1);
+add(t1);
+add(l2);
+add(t2);
+add(l3);
+add(t3);
+add(b1);
+b1.addActionListener(this);
+add(l4);
+add(t4);
+add(l5);
+add(t5);
+add(b2);
+b2.addActionListener(this);
+}
+public void actionPerformed(ActionEvent e)
+{
+try
+{
+float disc,na;
+String s=e.getActionCommand();
+if(s.equals("Process Bill"))
+{
+int code=Integer.parseInt(t1.getText());
+float price=Float.parseFloat(t3.getText());
+if(code==101)
+{
+disc=price*0.15f;
+}
+else if(code==102)
+{
+disc=price*0.2f;
+}
+else if(code==103)
+{
+disc=price*0.25f;
+}
+else 
+disc=price*0.05f;
+na=price-disc;
+t4.setText(" "+disc);
+t5.setText(" "+na);
+}
+else if(b2==e.getSource())
+{
+t1.setText(" ");
+t2.setText(" ");
+t3.setText(" ");
+t4.setText(" ");
+t5.setText(" ");
+}
+}
+catch(NumberFormatException n)
+{
+t1.setText("0");
+t2.setText("0");
+t3.setText("0");
+t4.setText("0");
+t5.setText("0");
+}
+}
+}
+class UpdatePrg
+{
+public static void main(String args[])
+{
+Shopping s=new Shopping();
+s.setTitle("Swing Program-Book Shopping");
+s.setSize(170,300);
+s.setVisible(true);
+s.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+s.setResizable(true);
+}
+}
