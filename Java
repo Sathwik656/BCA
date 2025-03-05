@@ -1,0 +1,22 @@
+import java.io.*;
+class ProductSum
+{
+    public static void main (String[] args)throws IOException
+    {
+        int f,s,fr=0,sr=0,sp=0;
+        BufferedReader br=new BufferedReader(newInputStreamReader(System.in));
+        System.out.println("Enter the first number");
+        f=Integer.parseInt(br.readLine());
+        System.out.println("Enter the second number");
+        s=Integer.parseInt(br.readLine());
+        while(f>0  && s>0)
+        {
+            fr=f%10;
+            sr=s%10;
+            sp=sp+(fr*sr);
+            f=f/10;
+            s=s/10;
+        }
+        System.out.println("Sum and product of corresponding digits ="+sp);
+    }
+} 
